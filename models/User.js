@@ -6,25 +6,34 @@ const UserSchema = new Schema({
 
     name:{
         type: String,
+        required: [true,"Please Enter User Name"]
     },
     nic:{
         type: String,
+        unique: [true,"This User is Already Exist"], 
+        required: [true,"Please Enter NIC"]
     },
     dob:{
         type: String,
+        required: [true,"Please Enter DOB"]
     },
     address:{
         type: String,
+        required: [true,"Please Enter Address"]
     },
-    city:{
-        type: String,
-    },
-    
     postalcode:{
         type: String,
+        required: [true,"Please Enter Postal Code"]
     },
     contact:{
         type: String,
+        required: [true,"Please Enter Contact Number"]
+    },
+    created_at: {type: Date, default: Date.now},
+    enabled: {type: String, default: "Disabled"},
+    account_type: {
+        type: String,
+        default: 'Manager'
     },
 
 })

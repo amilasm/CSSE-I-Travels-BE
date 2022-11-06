@@ -43,16 +43,17 @@ router.route("/").get(function(req,res) {
 })
 
 
-//update order details
+//update user details
 router.route("/:id").put(async (req,res) =>{
     let orderID = req.params.id;
     //destructure
-    const{ name,
+    const{ 
+        name,
         nic,
         dob,
         address,
-        city,
         postalcode,
+        enabled,
         contact} = req.body;
 
     const updateOrder = {
@@ -60,17 +61,17 @@ router.route("/:id").put(async (req,res) =>{
         nic,
         dob,
         address,
-        city,
         postalcode,
-        contact
+        contact,
+        enabled
     }
     const update = await User.findByIdAndUpdate(orderID, updateOrder)
     //validation
     .then(() =>{
-    res.status(200).send({status:"user details updated"})
+    res.status(200).send({status:"User details updated"})
     }).catch((err)=>{
         console.log(err);
-        res.status(500).send({status:"error updating user profile"});
+        res.status(500).send({status:"Error updating user profile"});
     })
 })
 
